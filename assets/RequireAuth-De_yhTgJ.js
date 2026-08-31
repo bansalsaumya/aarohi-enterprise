@@ -1,0 +1,1 @@
+import{j as e}from"./index-pf2bFGo0.js";import{N as o}from"./vendor-DvnCkr_g.js";import"./icons-Dexk5uQY.js";function m({children:t}){return localStorage.getItem("aarohi_token")?t:e.jsx(o,{to:"/admin/login",replace:!0})}export{m as default};
