@@ -1,11 +1,11 @@
-﻿import http.server
+import http.server
 import socketserver
 import os
 import posixpath
 import urllib
 
 PORT = 8080
-DIRECTORY = r'C:\Desktop\aarohi'
+DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
 class SPAHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
