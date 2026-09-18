@@ -165,7 +165,8 @@ class SPAHandler(http.server.SimpleHTTPRequestHandler):
                 return self.send_json({"error": str(e)}, status=500)
 
         elif clean_path.startswith('/api/products/'):
-            slug_or_id = clean_path.replace('/api/products/', '').strip()
+            raw_slug = urllib.parse.unquote(clean_path.replace('/api/products/', '')).strip()
+            normalized = raw_slug.lower().replace(' ', '-').replace('_', '-')
             try:
                 conn = get_db()
                 cursor = conn.cursor()
@@ -173,9 +174,20 @@ class SPAHandler(http.server.SimpleHTTPRequestHandler):
                     SELECT p.*, c.name AS category_name, c.slug AS category_slug 
                     FROM products p 
                     LEFT JOIN categories c ON p.category_id = c.id 
-                    WHERE p.slug = ? OR p.id = ?
-                """, (slug_or_id, slug_or_id))
+                    WHERE p.slug = ? OR p.slug = ? OR p.id = ? OR LOWER(p.name) = LOWER(?) OR LOWER(p.name) = LOWER(?)
+                """, (raw_slug, normalized, raw_slug, raw_slug, normalized.replace('-', ' ')))
                 row = cursor.fetchone()
+                if not row:
+                    # Partial fallback
+                    cursor.execute("""
+                        SELECT p.*, c.name AS category_name, c.slug AS category_slug 
+                        FROM products p 
+                        LEFT JOIN categories c ON p.category_id = c.id 
+                        WHERE p.slug LIKE ? OR LOWER(p.name) LIKE ?
+                        LIMIT 1
+                    """, (f"%{normalized}%", f"%{raw_slug}%"))
+                    row = cursor.fetchone()
+
                 conn.close()
                 if row:
                     return self.send_json(dict(row))
@@ -196,7 +208,6 @@ class SPAHandler(http.server.SimpleHTTPRequestHandler):
                 if os.path.isfile(cp):
                     return self.serve_file(cp)
             
-            # If not found locally, fetch from remote backend and cache it locally
             try:
                 remote_url = f"{REMOTE_BACKEND}/uploads/{urllib.parse.quote(file_name)}"
                 req = urllib.request.Request(remote_url, headers={"User-Agent": "Mozilla/5.0"})
@@ -211,21 +222,17 @@ class SPAHandler(http.server.SimpleHTTPRequestHandler):
             except Exception:
                 pass
 
-        # Remove leading slashes for local filesystem path
         relative_path = clean_path.lstrip('/\\').replace('/', os.sep)
         full_path = os.path.join(DIRECTORY, relative_path)
         
-        # If requested path matches a static file on disk, serve it directly
         if relative_path and os.path.isfile(full_path):
             return self.serve_file(full_path)
             
-        # If it has a file extension (e.g. .jpg, .js, .css, .png, .webp) but not found
         _, ext = os.path.splitext(clean_path)
         if ext and ext not in ['.html']:
             self.send_error(404, f"File not found: {clean_path}")
             return
 
-        # Fallback to index.html for Single Page Application routing (e.g., /, /products, /about, /contact)
         index_file = os.path.join(DIRECTORY, "index.html")
         return self.serve_file(index_file)
 
