@@ -1,34 +1,27 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <script>
-      (function() {
-        const origRemoveChild = Node.prototype.removeChild;
-        Node.prototype.removeChild = function(child) {
-          if (child && child.parentNode !== this) {
-            if (child.parentNode) {
-              return child.parentNode.removeChild(child);
-            }
-            return child;
-          }
-          return origRemoveChild.apply(this, arguments);
-        };
-        const origInsertBefore = Node.prototype.insertBefore;
-        Node.prototype.insertBefore = function(newNode, referenceNode) {
-          if (referenceNode && referenceNode.parentNode !== this) {
-            if (referenceNode.parentNode) {
-              return referenceNode.parentNode.insertBefore(newNode, referenceNode);
-            }
-            return this.appendChild(newNode);
-          }
-          return origInsertBefore.apply(this, arguments);
-        };
-      })();
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Microsoft Clarity Tracking Code -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window,document,"clarity","script","YOUR_CLARITY_PROJECT_ID");
     </script>
+    <!-- End Microsoft Clarity Tracking Code -->
 
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/jpeg" href="/web.logo.jpeg" />
-    <link rel="apple-touch-icon" href="/web.logo.jpeg" />
+    <link rel="icon" type="image/jpeg" href="/assets/web.logo-D82tbdAi.jpeg" />
+    <link rel="apple-touch-icon" href="/assets/web.logo-D82tbdAi.jpeg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#C8102E" />
     <meta name="google-site-verification" content="OLNTOli9WSqmqeI3PWR7eOxbR2U0bA2huXjmW5UcQbo" />
@@ -84,11 +77,10 @@
         "contactType": "sales"
       }
     }
-    </script>
-    <script type="module" crossorigin src="/assets/index-pf2bFGo0.js?v=1788200001"></script>
-    <link rel="modulepreload" crossorigin href="/assets/vendor-DvnCkr_g.js?v=1788200001">
-    <link rel="modulepreload" crossorigin href="/assets/icons-Dexk5uQY.js?v=1788200001">
-    <link rel="stylesheet" crossorigin href="/assets/index-DoiB3a0F.css?v=1788200001">
+    <script type="module" crossorigin src="/assets/index-pf2bFGo0.js?v=1788775200"></script>
+    <link rel="modulepreload" crossorigin href="/assets/vendor-DvnCkr_g-C0bmR9sy.js?v=1788775200">
+    <link rel="modulepreload" crossorigin href="/assets/icons-Dexk5uQY-BsqZCZ6j.js?v=1788775200">
+    <link rel="stylesheet" crossorigin href="/assets/index-Pi88sdGt.css">
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
