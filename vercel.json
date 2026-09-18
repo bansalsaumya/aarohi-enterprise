@@ -1,11 +1,24 @@
 {
-  "routes": [
+  "rewrites": [
     {
-      "handle": "filesystem"
+      "source": "/api/products/(.+)",
+      "destination": "/api/products?slug=$1"
     },
     {
-      "src": "/.*",
-      "dest": "/index.html"
+      "source": "/api/products",
+      "destination": "/api/products"
+    },
+    {
+      "source": "/api/categories",
+      "destination": "/api/categories"
+    },
+    {
+      "source": "/api/inquiries",
+      "destination": "/api/inquiries"
+    },
+    {
+      "source": "/((?!api/|uploads/|assets/|favicon|logo|factory|video|web|aarohi_catalog).*.*)",
+      "destination": "/index.html"
     }
   ]
 }
