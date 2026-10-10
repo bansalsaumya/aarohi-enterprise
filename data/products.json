@@ -1,5 +1,22 @@
 [
   {
+    "id": 71,
+    "category_id": 6,
+    "name": "Disposable Hotel Slipper Material",
+    "slug": "disposable-hotel-slipper-material",
+    "description": "Disposable Hotel Slipper Material is a soft, comfortable, and lightweight material solution engineered specifically for disposable hotel slippers, resort amenities, and guest-use applications. Its soft-touch surface and flexible laminated construction make it ideal for slipper manufacturing where lightweight handling and practical comfort are key.",
+    "image_path": "uploads/disposable_hotel_slipper_material_1.jpg,uploads/disposable_hotel_slipper_material_2.jpg,uploads/disposable_hotel_slipper_material_3.jpg",
+    "specifications": "{\"Material\": \"Soft Laminated Fabric / Fleece / Foam Substrate\", \"Application\": \"Disposable Hotel Slippers, Resorts, Spas, Guest Amenities\", \"Key Features\": \"Soft & Lightweight, Comfortable Surface, Flexible Handling\", \"Color\": \"White / Custom Shades\", \"Supply Type\": \"Bulk Roll / Cut Material for Slipper Manufacturing\"}",
+    "trade_info": "{\"Minimum Order Quantity\": \"500 Meters\", \"Supply Ability\": \"10,000 Meters per Month\", \"Delivery Time\": \"3 - 7 Business Days\", \"Payment Terms\": \"NEFT/RTGS, Cash Advance (CA), CID\", \"Main Domestic Market\": \"All India (Ahmedabad, Delhi NCR, Mumbai, Goa, Bengaluru, Jaipur)\"}",
+    "is_featured": 1,
+    "created_at": "2026-10-10 15:26:36",
+    "meta_title": "Disposable Hotel Slipper Material Manufacturer & Supplier | Aarohi Enterprise",
+    "meta_description": "Disposable hotel slipper material for hotels, resorts and hospitality applications. Soft, lightweight and flexible material for bulk manufacturing requirements.",
+    "keywords": "disposable hotel slipper material, hotel slipper material, disposable slipper material, hotel slippers manufacturer, hospitality slipper material, hotel guest slippers, disposable hotel slippers, slipper material supplier India, aarohi enterprise ahmedabad",
+    "category_name": "Shoes Laminated Fabric",
+    "category_slug": "shoes-laminated-fabric"
+  },
+  {
     "id": 70,
     "category_id": 2,
     "name": "Insulated Lunch Box Foam Fabric",
