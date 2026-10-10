@@ -69,15 +69,24 @@ class SPAHandler(http.server.SimpleHTTPRequestHandler):
             mime, _ = mimetypes.guess_type(file_path)
             file_size = os.path.getsize(file_path)
             self.send_response(200)
+            self.send_header('Access-Control-Allow-Origin', '*')
             self.send_header('Content-Type', mime or 'application/octet-stream')
             self.send_header('Content-Length', str(file_size))
-            self.end_headers()
+            
+            _, ext = os.path.splitext(file_path)
+            if ext.lower() in ['.jpg', '.jpeg', '.png', '.webp', '.css', '.js', '.woff2', '.mp4', '.pdf', '.svg']:
+                self.send_header('Cache-Control', 'public, max-age=31536000, immutable')
+            else:
+                self.send_header('Cache-Control', 'no-cache, max-age=0')
+                
+            super(http.server.SimpleHTTPRequestHandler, self).end_headers()
             with open(file_path, 'rb') as f:
                 while chunk := f.read(65536):
                     self.wfile.write(chunk)
         except (ConnectionResetError, BrokenPipeError):
             pass
         except Exception as e:
+            pass
             try:
                 self.send_error(500, f"Error reading file: {e}")
             except Exception:
